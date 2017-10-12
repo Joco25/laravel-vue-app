@@ -44,10 +44,10 @@ class Form{
 	}
 
 	data(){
-		// let data = Object.assign({}, this);
-
-		// delete data.originalData;
-		// delete data.errors;
+		let data = {};
+		for(let property in this.originalData){
+			data[property]= this[property];
+		}
 
 		return data;
 	}
@@ -59,6 +59,19 @@ class Form{
 
 		this.errors.clear();
 	}
+
+	post(url){
+		return this.submit('POST', url);
+	}
+
+	patch(url){
+		return this.submit('PATCH',url);
+	}
+
+	delete(url){
+		return this.submit('DELETE',url);
+	}
+
 
 	submit(requestType, url){
 		return new Promise((resolve, reject)=>{
